@@ -25,7 +25,8 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 
 	input_shape = (224, 224); input_shape_x = input_shape[0]; input_shape_y = input_shape[1]
 
-	text_color = (255,255,255)
+	#text_color = (255,255,255)
+	text_color = (0,0,255)
 
 	employees = []
 	#check passed db folder exists
@@ -98,7 +99,7 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 		#preprocess_face returns single face. this is expected for source images in db.
 		img = functions.preprocess_face(img = employee, target_size = (input_shape_y, input_shape_x), enforce_detection = False, detector_backend = detector_backend)
 		img_representation = model.predict(img)[0,:]
-
+		print("img_representation= ",len(img_representation))
 		embedding.append(employee)
 		embedding.append(img_representation)
 		embeddings.append(embedding)
@@ -158,7 +159,8 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 				if face_index == 0:
 					face_included_frames = face_included_frames + 1 #increase frame for a single face
 
-				cv2.rectangle(img, (x,y), (x+w,y+h), (67,67,67), 1) #draw rectangle to main image
+#				cv2.rectangle(img, (x,y), (x+w,y+h), (0,255,0), 1) #draw rectangle to main image
+				cv2.rectangle(img, (x,y), (x+w,y+h), (255,255,255), 1) #draw rectangle to main image
 
 				cv2.putText(img, str(frame_threshold - face_included_frames), (int(x+w/4),int(y+h/1.5)), cv2.FONT_HERSHEY_SIMPLEX, 4, (255, 255, 255), 2)
 
@@ -444,8 +446,8 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 
 				time_left = int(time_threshold - (toc - tic) + 1)
 
-				cv2.rectangle(freeze_img, (10, 10), (90, 50), (67,67,67), -10)
-				cv2.putText(freeze_img, str(time_left), (40, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 1)
+#				cv2.rectangle(freeze_img, (10, 10), (90, 50), (67,67,67), -10)
+#				cv2.putText(freeze_img, str(time_left), (40, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 1)
 
 				cv2.imshow('img', freeze_img)
 
