@@ -7,7 +7,7 @@ import time
 import re
 import imutils
 #from utils import *
-from imutils.video import FPS
+#from imutils.video import FPS
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
@@ -19,7 +19,7 @@ from deepface.detectors import FaceDetector
 #fps = FPS().start()
 
 def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', distance_metric = 'cosine', enable_face_analysis = True, source = 0, time_threshold = 5, frame_threshold = 5):
-	fps = FPS().start()
+	#fps = FPS().start()
 	#------------------------
 
 	face_detector = FaceDetector.build_model(detector_backend)
@@ -131,13 +131,13 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 
 	while(True):
 		ret, img = cap.read()
-		fps.update()
-		fps.stop()
-		print("[INFO] approx. FPS: {:.2f}".format(fps.fps()))
-		fps_print = "{:.2f} FPS".format(fps.fps())
+		#fps.update()
+		#fps.stop()
+		#print("[INFO] approx. FPS: {:.2f}".format(fps.fps()))
+		#fps_print = "{:.2f} FPS".format(fps.fps())
 		
 		
-		if not(ret):
+		if not(ret): 
 			st = time.time()
 			cap = cv2.VideoCapture("rtsp://admin:ticsa2020@192.168.0.44:554/Streaming/Channels/102") #DSHOW)
             #cap = cv2.VideoCapture(0) #DSHOW)
@@ -475,7 +475,7 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 				freezed_frame = 0
 
 		else:
-			cv2.putText(img,fps_print,(10,20),cv2.FONT_HERSHEY_DUPLEX,0.6,(0,255,255),1)
+			#cv2.putText(img,fps_print,(10,20),cv2.FONT_HERSHEY_DUPLEX,0.6,(0,255,255),1)
 			cv2.imshow('img',img)
 
 		if cv2.waitKey(1) & 0xFF == ord('q'): #press q to quit
