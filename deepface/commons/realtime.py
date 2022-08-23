@@ -6,8 +6,8 @@ import cv2
 import time
 import re
 import imutils
-#from utils import *
-#from imutils.video import FPS
+from utils import *
+from imutils.video import FPS
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
@@ -89,10 +89,50 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 
 	#-----------------------
 
-	pbar = tqdm(range(0, len(employees)), desc='Finding embeddings')
+	#pbar = tqdm(range(0, len(employees)), desc='Finding embeddings')
 
 	#TODO: why don't you store those embeddings in a pickle file similar to find function?
 
+
+#--------------------------------------------------------------------------------------------------------
+	
+	
+	#PARA NO CREAR LOS EMBEDDINGS EN CADA CORRIDA
+	embeddings = []
+	img_representation = []
+	empleados = []
+	
+	#for employee in employees:
+	#for index in pbar:
+	for index in range(0, len(employees)):
+		embedding = []
+		empleado = []
+		employee = employees[index]
+		empleados.append(employee)
+		#empleados.append(employee)
+		
+		#pbar.set_description("Finding embedding for %s" % (employee.split("/")[-1]))
+		
+		#preprocess_face returns single face. this is expected for source images in db.
+		#img = functions.preprocess_face(img = employee, target_size = (input_shape_y, input_shape_x), enforce_detection = False, detector_backend = detector_backend)
+
+		with open('D://rbc//Github//face_recognition//data//encodings//encodings_16_08_2022.pkl', 'rb') as f: 
+			data = pickle.load(f)
+		for index in list(data):
+			img_representation = data[index]
+			#img_representation.append(list(img_representation))
+		#img_representation = model.predict(img)[0,:]
+		embeddings.append(img_representation)
+	
+	
+	print("EMPLOYEE = ",(empleados))
+	print("EMBEDDGINS = ",(embeddings))
+	df = pd.DataFrame(list(zip(empleados ,embeddings)), columns = ['employee', 'embedding'])
+	print("TAMAÑO DF", len(df))
+	
+	"""	
+	#PARA CREAR LOS EMBEDDINGS EN CADA CORRIDA
+	pbar = tqdm(range(0, len(employees)), desc='Finding embeddings')
 	embeddings = []
 	#for employee in employees:
 	for index in pbar:
@@ -103,12 +143,15 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 		#preprocess_face returns single face. this is expected for source images in db.
 		img = functions.preprocess_face(img = employee, target_size = (input_shape_y, input_shape_x), enforce_detection = False, detector_backend = detector_backend)
 		img_representation = model.predict(img)[0,:]
-		print("img_representation= ",len(img_representation))
+		#print("img_representation= ",len(img_representation))
 		embedding.append(employee)
 		embedding.append(img_representation)
 		embeddings.append(embedding)
+	"""	
+# -----------------------------------------------------------------------------------------------------------------
 
-	df = pd.DataFrame(embeddings, columns = ['employee', 'embedding'])
+	#df = pd.DataFrame(list(zip(empleados ,embeddings)), columns = ['employee', 'embedding'])
+	print(" dataframe=", df)
 	df['distance_metric'] = distance_metric
 
 	toc = time.time()
