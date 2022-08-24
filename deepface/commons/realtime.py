@@ -216,7 +216,7 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 		face_index = 0
 		for face, (x, y, w, h) in faces:
 			#if w > 130: #discard small detected faces
-			if w > 70: #discard small detected faces
+			if w > 40: #discard small detected faces
 
 				face_detected = True
 				if face_index == 0:
@@ -257,7 +257,7 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 						w = detected_face[2]; h = detected_face[3]
 
 						#cv2.rectangle(freeze_img, (x,y), (x+w,y+h), (67,67,67), 1) #draw rectangle to main image
-						cv2.rectangle(freeze_img, (x,y), (x+w,y+h), (0,255,0), 1) #draw rectangle to main image
+						cv2.rectangle(freeze_img, (x,y), (x+w,y+h), (255,0,0), 1) #Por cada rostro detectado
 
 						#-------------------------------
 
@@ -445,6 +445,7 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 									label = employee_name.split("/")[-1].replace(".jpg", "")
 									label = re.sub('[0-9]', '', label)
 
+									
 									try:
 										if y - pivot_img_size > 0 and x + w + pivot_img_size < resolution_x:
 											#top right
@@ -503,18 +504,17 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 											cv2.line(freeze_img, (x+int(w/2)+int(w/4), y+h+int(pivot_img_size/2)), (x+w, y+h+int(pivot_img_size/2)), (67,67,67),1)
 									except Exception as err:
 										print(str(err))
-
+								
 						tic = time.time() #in this way, freezed image can show 5 seconds
 
 						#-------------------------------
 
 				time_left = int(time_threshold - (toc - tic) + 1)
 
-#				cv2.rectangle(freeze_img, (10, 10), (90, 50), (67,67,67), -10)
-#				cv2.putText(freeze_img, str(time_left), (40, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 1)
+				#cv2.rectangle(freeze_img, (10, 10), (90, 50), (67,67,67), -10)
+				#cv2.putText(freeze_img, str(time_left), (40, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 1)
 
-				cv2.imshow('img', freeze_img)
-
+				cv2.imshow('img', freeze_img) 
 				freezed_frame = freezed_frame + 1
 			else:
 				face_detected = False
