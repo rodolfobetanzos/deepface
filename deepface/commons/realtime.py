@@ -116,7 +116,7 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 		#preprocess_face returns single face. this is expected for source images in db.
 		#img = functions.preprocess_face(img = employee, target_size = (input_shape_y, input_shape_x), enforce_detection = False, detector_backend = detector_backend)
 
-		with open('D://rbc//Github//face_recognition//data//encodings//encodings_16_08_2022.pkl', 'rb') as f: 
+		with open('D://rbc//Github//face_recognition//data//encodings//desarrollo.pkl', 'rb') as f: 
 			data = pickle.load(f)
 		for index in list(data):
 			img_representation = data[index]
