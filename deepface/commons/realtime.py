@@ -221,8 +221,8 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 				if face_index == 0:
 					face_included_frames = face_included_frames + 1 #increase frame for a single face
 
-#				cv2.rectangle(img, (x,y), (x+w,y+h), (0,255,0), 1) #draw rectangle to main image
-				cv2.rectangle(img, (x,y), (x+w,y+h), (255,255,255), 1) #draw rectangle to main image
+				cv2.rectangle(img, (x,y), (x+w,y+h), (0,255,0), 1) #draw rectangle to main image
+#				cv2.rectangle(img, (x,y), (x+w,y+h), (255,255,255), 1) #draw rectangle to main image
 
 				cv2.putText(img, str(frame_threshold - face_included_frames), (int(x+w/4),int(y+h/1.5)), cv2.FONT_HERSHEY_SIMPLEX, 4, (255, 255, 255), 2)
 
