@@ -22,6 +22,6 @@ Parameters:
 
 #DeepFace.stream(db_path = 'D://rbc//Github//face_recognition//data//people_golden//desarrollo', model_name ='Facenet', detector_backend = 'ssd', distance_metric = 'cosine', enable_face_analysis = False, source = 0, time_threshold = 1, frame_threshold = 1)
 #DeepFace.stream(db_path = 'D://desarrollo', model_name ='Facenet', detector_backend = 'ssd', distance_metric = 'cosine', enable_face_analysis = False, source = 0, time_threshold = 1, frame_threshold = 1)
-DeepFace.stream(db_path = 'D://desarrollo', model_name ='Facenet', detector_backend = 'ssd', distance_metric = 'cosine', enable_face_analysis = False, source = "D://rbc//Golden_entrance_15_704_576_III.mp4", time_threshold = 1, frame_threshold = 1)
-#DeepFace.stream(db_path = 'D://desarrollo', model_name ='Facenet', detector_backend = 'ssd', distance_metric = 'cosine', enable_face_analysis = False, source = 0 , time_threshold = 1, frame_threshold = 1)
+#DeepFace.stream(db_path = 'D://desarrollo', model_name ='Facenet', detector_backend = 'ssd', distance_metric = 'cosine', enable_face_analysis = False, source = "D://rbc//Golden_entrance_15_704_576_III.mp4", time_threshold = 1, frame_threshold = 1)
+DeepFace.stream(db_path = 'D://desarrollo', model_name ='Facenet', detector_backend = 'ssd', distance_metric = 'cosine', enable_face_analysis = False, source = "rtsp://admin:ticsa2020@192.168.0.44:554/Streaming/Channels/102" , time_threshold = 1, frame_threshold = 1)
 

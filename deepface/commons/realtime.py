@@ -216,7 +216,7 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 		face_index = 0
 		for face, (x, y, w, h) in faces:
 			#if w > 130: #discard small detected faces
-			if w > 40: #discard small detected faces
+			if w > 5: #discard small detected faces
 
 				face_detected = True
 				if face_index == 0:
@@ -257,7 +257,7 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 						w = detected_face[2]; h = detected_face[3]
 
 						#cv2.rectangle(freeze_img, (x,y), (x+w,y+h), (67,67,67), 1) #draw rectangle to main image
-						cv2.rectangle(freeze_img, (x,y), (x+w,y+h), (255,0,0), 1) #Por cada rostro detectado
+						cv2.rectangle(freeze_img, (x,y), (x+w,y+h), (0,0,255), 1) #Por cada rostro detectado RGB (B,G,R)
 
 						#-------------------------------
 
