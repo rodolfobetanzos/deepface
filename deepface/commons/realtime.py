@@ -97,7 +97,7 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 #--------------------------------------------------------------------------------------------------------
 	
 	
-	#PARA NO CREAR LOS EMBEDDINGS EN CADA CORRIDA
+	#-----------------------------------------------------------------------------------------------------------------------------PARA NO CREAR LOS EMBEDDINGS EN CADA CORRIDA
 	embeddings = []
 	img_representation = []
 	empleados = []
@@ -105,8 +105,8 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 	#for employee in employees:
 	#for index in pbar:
 	for index in range(0, len(employees)):
-		embedding = []
-		empleado = []
+		#embedding = []
+		#empleado = []
 		employee = employees[index]
 		empleados.append(employee)
 		#empleados.append(employee)
@@ -122,16 +122,18 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 			img_representation = data[index]
 			#img_representation.append(list(img_representation))
 		#img_representation = model.predict(img)[0,:]
-		embeddings.append(img_representation)
+			embeddings.append(img_representation)
+		df = pd.DataFrame(list(zip(empleados ,embeddings)), columns = ['employee', 'embedding'])
+
 	
 	
-	print("EMPLOYEE = ",(empleados))
-	print("EMBEDDGINS = ",(embeddings))
-	df = pd.DataFrame(list(zip(empleados ,embeddings)), columns = ['employee', 'embedding'])
-	print("TAMAÑO DF", len(df))
+	#print("EMPLOYEE = ",(empleados))
+	#print("EMBEDDGINS = ",(embeddings))
+	print("TAMAÑO DATAFRAME ", len(df))
 	
 	"""	
-	#PARA CREAR LOS EMBEDDINGS EN CADA CORRIDA
+	#-----------------------------------------------------------------------------------------------------------------------------PARA CREAR LOS EMBEDDINGS EN CADA CORRIDA
+
 	pbar = tqdm(range(0, len(employees)), desc='Finding embeddings')
 	embeddings = []
 	#for employee in employees:
@@ -151,7 +153,8 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 # -----------------------------------------------------------------------------------------------------------------
 
 	#df = pd.DataFrame(list(zip(empleados ,embeddings)), columns = ['employee', 'embedding'])
-	print(" dataframe=", df)
+	print(" DATAFRAME = ", df)
+	
 	df['distance_metric'] = distance_metric
 
 	toc = time.time()
