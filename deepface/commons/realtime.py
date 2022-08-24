@@ -96,7 +96,7 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 
 #--------------------------------------------------------------------------------------------------------
 	
-	
+	"""
 	#-----------------------------------------------------------------------------------------------------------------------------PARA NO CREAR LOS EMBEDDINGS EN CADA CORRIDA
 	embeddings = []
 	img_representation = []
@@ -116,7 +116,9 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 		#preprocess_face returns single face. this is expected for source images in db.
 		#img = functions.preprocess_face(img = employee, target_size = (input_shape_y, input_shape_x), enforce_detection = False, detector_backend = detector_backend)
 
-		with open('D://rbc//Github//face_recognition//data//encodings//desarrollo.pkl', 'rb') as f: 
+		#with open('D://rbc//Github//face_recognition//data//encodings//desarrollo.pkl', 'rb') as f: 
+		#with open('D://rbc//Github//face_recognition//data//encodings//encodings_0_1000.pkl', 'rb') as f:			
+		with open('D://rbc//Github//face_recognition//data//encodings//encodings_1001_1500.pkl', 'rb') as f: 
 			data = pickle.load(f)
 		for index in list(data):
 			img_representation = data[index]
@@ -149,10 +151,11 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 		embedding.append(employee)
 		embedding.append(img_representation)
 		embeddings.append(embedding)
-	"""	
+	df = pd.DataFrame(embeddings, columns = ['employee', 'embedding'])
+		
 # -----------------------------------------------------------------------------------------------------------------
 
-	#df = pd.DataFrame(list(zip(empleados ,embeddings)), columns = ['employee', 'embedding'])
+	
 	print(" DATAFRAME = ", df)
 	
 	df['distance_metric'] = distance_metric
@@ -216,7 +219,7 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 		face_index = 0
 		for face, (x, y, w, h) in faces:
 			#if w > 130: #discard small detected faces
-			if w > 5: #discard small detected faces
+			if w > 1: #discard small detected faces tamaño de los rostros filtro 
 
 				face_detected = True
 				if face_index == 0:
