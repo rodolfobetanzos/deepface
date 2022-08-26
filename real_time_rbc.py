@@ -3,9 +3,21 @@ from deepface import DeepFace
 Parameters:
 		db_path (string): facial database path. You should store some .jpg files in this folder.
 
-		model_name (string): VGG-Face, Facenet, OpenFace, DeepFace, DeepID, Dlib or Ensemble
+		model_name (string): 
+		VGG-Face, 
+		Facenet, 
+		OpenFace, 
+		DeepFace, 
+		DeepID, 
+		Dlib 
+		Ensemble
 
-		detector_backend (string): opencv, ssd, mtcnn, dlib, retinaface
+		detector_backend (string): 
+		opencv, 
+		ssd, 
+		mtcnn, 
+		dlib, 
+		retinaface
 
 		distance_metric (string): cosine, euclidean, euclidean_l2
 
@@ -23,6 +35,10 @@ Parameters:
 #DeepFace.stream(db_path = 'D://rbc//Github//face_recognition//data//people_golden//desarrollo', model_name ='Facenet', detector_backend = 'ssd', distance_metric = 'cosine', enable_face_analysis = False, source = 0, time_threshold = 1, frame_threshold = 1)
 #DeepFace.stream(db_path = 'D://desarrollo', model_name ='Facenet', detector_backend = 'ssd', distance_metric = 'cosine', enable_face_analysis = False, source = 0, time_threshold = 1, frame_threshold = 1)
 #DeepFace.stream(db_path = 'D://desarrollo', model_name ='Facenet', detector_backend = 'ssd', distance_metric = 'cosine', enable_face_analysis = False, source = "D://rbc//Golden_entrance_15_704_576_IV.mp4", time_threshold = 1, frame_threshold = 1)
-DeepFace.stream(db_path = 'D://rbc//Github//face_recognition//data//people_golden//people_10000', model_name ='Facenet', detector_backend = 'ssd', distance_metric = 'cosine', enable_face_analysis = False, source = "rtsp://admin:ticsa2020@192.168.0.44:554/Streaming/Channels/102" , time_threshold = 1, frame_threshold = 1)
 #DeepFace.stream(db_path = 'D://rbc//Github//face_recognition//data//people_golden//people_10000', model_name ='Facenet', detector_backend = 'ssd', distance_metric = 'cosine', enable_face_analysis = False, source = "D://rbc//Golden_entrance_15_704_576_IV.mp4", time_threshold = 1, frame_threshold = 1)
+#DeepFace.stream(db_path = 'D://rbc//Github//face_recognition//data//people_golden//desarrollo', model_name ='Facenet', detector_backend = 'opencv', distance_metric = 'cosine', enable_face_analysis = False, source = "D://rbc//Golden_entrance_15_704_576_V.mp4" , time_threshold = 1, frame_threshold = 2)
+#DeepFace.stream(db_path = 'D://rbc//Github//face_recognition//data//people_golden//desarrollo', model_name ='Facenet', detector_backend = 'ssd', distance_metric = 'cosine', enable_face_analysis = False, source = 0 , time_threshold = 1, frame_threshold = 1)
+#DeepFace.stream(db_path = 'D://rbc//Github//face_recognition//data//people_golden//desarrollo', model_name ='Facenet', detector_backend = 'opencv', distance_metric = 'cosine', enable_face_analysis = False, source = "rtsp://admin:ticsa2020@192.168.0.44:554/Streaming/Channels/102" , time_threshold = 1, frame_threshold = 1)
+DeepFace.stream(db_path = 'D://rbc//Github//face_recognition//data//people_golden//desarrollo', model_name ='Facenet', detector_backend = 'opencv', distance_metric = 'cosine', enable_face_analysis = False, 
+							source = 0 , time_threshold = 1, frame_threshold = 1)
 

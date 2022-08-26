@@ -51,7 +51,7 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 	if len(employees) > 0:
 
 		model = DeepFace.build_model(model_name)
-		print(model_name," is built")
+		print(model_name," model is built")
 
 		#------------------------
 
@@ -95,7 +95,6 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 
 
 #--------------------------------------------------------------------------------------------------------
-	
 	"""
 	#-----------------------------------------------------------------------------------------------------------------------------PARA NO CREAR LOS EMBEDDINGS EN CADA CORRIDA
 	embeddings = []
@@ -118,7 +117,7 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 
 		#with open('D://rbc//Github//face_recognition//data//encodings//desarrollo.pkl', 'rb') as f: 
 		#with open('D://rbc//Github//face_recognition//data//encodings//encodings_0_1000.pkl', 'rb') as f:			
-		with open('D://rbc//Github//face_recognition//data//encodings//encodings_1001_1500.pkl', 'rb') as f: 
+		with open('D://rbc//Github//face_recognition//data//encodings//desarrollo.pkl', 'rb') as f: 
 			data = pickle.load(f)
 		for index in list(data):
 			img_representation = data[index]
@@ -132,10 +131,10 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 	#print("EMPLOYEE = ",(empleados))
 	#print("EMBEDDGINS = ",(embeddings))
 	print("TAMAÑO DATAFRAME ", len(df))
-	
-	"""	
+	"""
+		
 	#-----------------------------------------------------------------------------------------------------------------------------PARA CREAR LOS EMBEDDINGS EN CADA CORRIDA
-
+	
 	pbar = tqdm(range(0, len(employees)), desc='Finding embeddings')
 	embeddings = []
 	#for employee in employees:
@@ -151,12 +150,13 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 		embedding.append(employee)
 		embedding.append(img_representation)
 		embeddings.append(embedding)
+	print("Face vector lenght = ",len(img_representation))
 	df = pd.DataFrame(embeddings, columns = ['employee', 'embedding'])
-		
-# -----------------------------------------------------------------------------------------------------------------
-
 	
-	print(" DATAFRAME = ", df)
+	# -----------------------------------------------------------------------------------------------------------------
+	
+	
+	print(" Dataframe= ", df)
 	
 	df['distance_metric'] = distance_metric
 
@@ -186,7 +186,8 @@ def analysis(db_path, model_name = 'VGG-Face', detector_backend = 'opencv', dist
 		#fps_print = "{:.2f} FPS".format(fps.fps())
 		
 		
-		if not(ret): 
+		if not(ret):
+			break
 			st = time.time()
 			cap = cv2.VideoCapture("rtsp://admin:ticsa2020@192.168.0.44:554/Streaming/Channels/102") #DSHOW)
             #cap = cv2.VideoCapture(0) #DSHOW)
